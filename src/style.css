@@ -1,0 +1,5 @@
+@import "../node_modules/bulma/css/bulma.css";
+
+.container {
+   padding-left: 5px;
+}
