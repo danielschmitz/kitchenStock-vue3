@@ -1,11 +1,15 @@
 <script setup lang="ts">
-const props = defineProps(['title', 'subtitle'])
+defineProps<{
+  title?: string
+  subTitle?: string
+}>()
+
 </script>
 <template>
   <section class="hero is-light">
     <div class="hero-body">
-      <p class="title">{{ props.title }}</p>
-      <p class="subtitle">{{ props.subtitle }}</p>
+      <p class="title">{{ title }}</p>
+      <p class="subtitle">{{ subTitle }}</p>
     </div>
   </section>
 </template>
