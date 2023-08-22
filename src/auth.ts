@@ -1,17 +1,17 @@
 import { reactive } from 'vue'
 
 export const auth = reactive({
-    authorization: '',
+    token: '',
     isLogged() {
-        return this.authorization !== ''
+        return this.token !== ''
     },
-    login( auth:string ) {
-        this.authorization = auth
+    login( token:string ) {
+        this.token = token
     },
     logout() {
-        this.authorization = ''
+        this.token = ''
     },
     getHeader() {
-        return `Authorization: Bearer ${this.authorization}`
+        return `Authorization: Bearer ${this.token}`
     }
 })

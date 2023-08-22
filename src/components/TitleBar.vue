@@ -6,7 +6,7 @@ defineProps<{
 
 </script>
 <template>
-  <section class="hero is-light">
+  <section class="hero is-light mb-1">
     <div class="hero-body">
       <p class="title">{{ title }}</p>
       <p class="subtitle">{{ subTitle }}</p>

@@ -2,6 +2,15 @@
 
 This template should help get you started developing with Vue 3 in Vite.
 
+## Install
+
+- clone
+- `npm install`
+- `npm run init` initialize .env and .db.json files
+- `npm run server` starts backend server at 3000 port
+- open another bash window
+- `npm run dev` starts vue
+
 ## Recommended IDE Setup
 
 [VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).

@@ -40,11 +40,13 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            
-            <RouterLink to="/signup" class="button is-primary">
-              <strong>Sign up</strong>
-            </RouterLink>
-            <a class="button is-light"> Log in </a>
+            <div v-if="isLogged">
+              <RouterLink to="/logout" class="button is-primary"> Logout </RouterLink>
+            </div>
+            <div v-else>
+              <RouterLink to="/signup" class="button is-primary"> Sign up </RouterLink>
+              <RouterLink to="/login" class="button is-light"> Login </RouterLink>
+            </div>
           </div>
         </div>
       </div>
@@ -52,3 +54,10 @@
   </nav>
   <hr style="margin: 0px" />
 </template>
+
+<script setup lang="ts">
+import { auth } from '@/auth'
+import { ref } from 'vue'
+
+const isLogged = ref<boolean>(auth.isLogged())
+</script>

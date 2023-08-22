@@ -12,7 +12,7 @@ import { auth } from '../auth'
       <AlertDanger>Você não está logado. Clique em login/signup</AlertDanger>
     </div>
     <div v-else>
-      login..
+      Login : {{ auth.isLogged() }}
     </div>
   </div>
 </template>
