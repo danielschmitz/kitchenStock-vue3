@@ -45,15 +45,12 @@ import TitleBar from '@/components/TitleBar.vue'
     </div>
   </div>
 
-  <div class="field is-grouped is-grouped-right has-background-light p-3">
+  <div class="field is-grouped is-grouped-centered has-background-light p-3 pt-6">
     <p class="control">
-      <a class="button is-primary"> Submit </a>
-    </p>
-    <p class="control">
-      <a class="button is-light"> Cancel </a>
+      <a class="button is-primary"> Enviar </a>
     </p>
   </div>
-  
+
 </template>
 
 <style scoped></style>

@@ -40,9 +40,10 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-primary">
+            
+            <RouterLink to="/signup" class="button is-primary">
               <strong>Sign up</strong>
-            </a>
+            </RouterLink>
             <a class="button is-light"> Log in </a>
           </div>
         </div>
