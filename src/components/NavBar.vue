@@ -36,12 +36,11 @@
             </div>
           </div> -->
       </div>
-
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <div v-if="isLogged">
-              <RouterLink to="/logout" class="button is-primary"> Logout </RouterLink>
+            <div v-if="auth.isLogged()">
+              <a @click="logout" class="button is-primary"> Logout </a>
             </div>
             <div v-else>
               <RouterLink to="/signup" class="button is-primary"> Sign up </RouterLink>
@@ -57,7 +56,12 @@
 
 <script setup lang="ts">
 import { auth } from '@/auth'
-import { ref } from 'vue'
+import router from '@/router';
 
-const isLogged = ref<boolean>(auth.isLogged())
+const logout = async (event: Event) => {
+  event?.preventDefault()
+  auth.logout()
+  router.push({path: '/'})
+} 
+
 </script>
