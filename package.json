@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "init": "cp .env.default .env && cp dg.json.default db.json", 
     "server": "json-server-auth db.json -r routes.json",
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
-    "format": "prettier --write src/"
+    "format": "prettier --write src/",
+    "init": "cp .env.default .env && cp dg.json.default db.json"
   },
   "dependencies": {
     "axios": "^1.4.0",
