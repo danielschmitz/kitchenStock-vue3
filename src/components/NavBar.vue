@@ -21,7 +21,7 @@
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
         <RouterLink class="navbar-item" to="/">Home</RouterLink>
-        <RouterLink class="navbar-item" to="/about">Categories</RouterLink>
+        <RouterLink class="navbar-item" to="/categories">Categories</RouterLink>
         <RouterLink class="navbar-item" to="/about">Products</RouterLink>
 
         <!-- <div class="navbar-item has-dropdown is-hoverable">
