@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import AlertDanger from '@/components/AlertDanger.vue'
 import TitleBar from '@/components/TitleBar.vue'
 </script>
 
@@ -51,4 +50,7 @@ import TitleBar from '@/components/TitleBar.vue'
       mojs
     </a>
   </nav>
+  <div class="field is-grouped is-grouped-centered">
+      <button class="button is-primary">Create</button>
+    </div>
 </template>
