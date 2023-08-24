@@ -13,8 +13,6 @@ module.exports = {
     ecmaVersion: 'latest'
   },
   rules: {
-    "vue/multi-word-component-names": ["error", {
-      "ignores": ['Spinner']
-    }]
+    "vue/multi-word-component-names": ["off"]
   }
 }

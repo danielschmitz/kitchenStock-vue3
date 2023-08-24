@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import TitleBar from '@/components/TitleBar.vue'
 import type Category from '@/dto/Category'
 import Spinner from '@/components/Spinner.vue'
 import AlertDanger from '@/components/AlertDanger.vue'
@@ -25,7 +24,6 @@ onMounted(async () => {
 </script>
 
 <template>
-  <TitleBar title="Categorias" sub-title="Lista de categorias dos produtos">
     <Spinner v-if="loading"></Spinner>
     <nav v-else class="panel is-shadowless border-with-title">
       <div class="panel-block">
@@ -43,47 +41,9 @@ onMounted(async () => {
         </span>
         {{ category.name }}
       </a>
-
-      <!-- <a class="panel-block is-active">
-      <span class="panel-icon">
-        <i class="fas fa-book" aria-hidden="true"></i>
-      </span>
-      bulma
-    </a>
-    <a class="panel-block">
-      <span class="panel-icon">
-        <i class="fas fa-book" aria-hidden="true"></i>
-      </span>
-      marksheet
-    </a>
-    <a class="panel-block">
-      <span class="panel-icon">
-        <i class="fas fa-book" aria-hidden="true"></i>
-      </span>
-      minireset.css
-    </a>
-    <a class="panel-block">
-      <span class="panel-icon">
-        <i class="fas fa-book" aria-hidden="true"></i>
-      </span>
-      jgthms.github.io
-    </a>
-    <a class="panel-block">
-      <span class="panel-icon">
-        <i class="fas fa-code-branch" aria-hidden="true"></i>
-      </span>
-      daniellowtw/infboard
-    </a>
-    <a class="panel-block">
-      <span class="panel-icon">
-        <i class="fas fa-code-branch" aria-hidden="true"></i>
-      </span>
-      mojs
-    </a> -->
     </nav>
     <div class="field is-grouped is-grouped-centered">
-      <button class="button is-primary">Create</button>
+      <RouterLink class="navbar-item" to="/categories/create"><a class="button is-primary">Create</a></RouterLink>
     </div>
     <AlertDanger v-if="errorMessage">{{ errorMessage }}</AlertDanger>
-  </TitleBar>
 </template>
