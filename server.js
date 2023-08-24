@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+const express = require('express');
 const jsonServer = require('json-server')
 const auth = require('json-server-auth')
 
@@ -19,7 +20,7 @@ app.use('/api', auth)
 app.use('/api', router)
 
 //expose vue to web root
-app.static('dist')
+app.use(express.static('dist'));
 
 // eslint-disable-next-line no-undef
 const port = process.env.PORT || 3000
