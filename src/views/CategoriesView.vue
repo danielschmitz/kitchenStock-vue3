@@ -1,19 +1,24 @@
 <script setup lang="ts">
 import TitleBar from '@/components/TitleBar.vue'
 import type Category from '@/dto/Category'
+import Spinner from '@/components/Spinner.vue'
 import CategoryService from '@/services/CategoryService'
 import { ref, onMounted } from 'vue'
 
 const categories = ref<Category[]>()
+const loading = ref<Boolean>(false)
 
 onMounted(async () => {
+  loading.value = true
   categories.value = await CategoryService.getAll()
+  loading.value = false
 })
 </script>
 
 <template>
   <TitleBar title="Categorias" sub-title="Lista de categorias dos produtos"></TitleBar>
-  <nav class="panel is-shadowless border-with-title">
+  <Spinner v-if="loading"></Spinner>
+  <nav v-else class="panel is-shadowless border-with-title">
     <div class="panel-block">
       <p class="control has-icons-left">
         <input class="input" type="text" placeholder="Search" />
