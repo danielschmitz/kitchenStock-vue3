@@ -43,7 +43,7 @@ onMounted(async () => {
       </a>
     </nav>
     <div class="field is-grouped is-grouped-centered">
-      <RouterLink class="navbar-item" to="/categories/create"><a class="button is-primary">Create</a></RouterLink>
+      <RouterLink to="/categories/create"><a class="button is-primary">New Category</a></RouterLink>
     </div>
     <AlertDanger v-if="errorMessage">{{ errorMessage }}</AlertDanger>
 </template>

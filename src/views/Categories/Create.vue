@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AlertDanger from '@/components/AlertDanger.vue'
 import type Category from '@/dto/Category'
 import router from '@/router'
 import CategoryService from '@/services/CategoryService'
@@ -17,6 +18,7 @@ const submitForm = async (event: Event) => {
   loading.value = true
   errorMessage.value = ''
   try {
+    // todo: verificar por nome
     await CategoryService.create(form.value)
     router.push('/categories')
   } catch (error: AxiosError | any) {
@@ -28,6 +30,7 @@ const submitForm = async (event: Event) => {
 </script>
 
 <template>
+  <AlertDanger v-if="errorMessage">{{errorMessage}}</AlertDanger>
   <form @submit="submitForm">
     
     <div class="columns m-3">
@@ -49,8 +52,13 @@ const submitForm = async (event: Event) => {
       </div>
     </div>
 
-    <div class="field is-grouped is-grouped-centered">
-      <button class="button is-primary" :disabled="loading" type="submit">Create Category</button>
+    <div class="field is-grouped is-grouped-right">
+      <div class="control">
+        <button class="button is-primary" :disabled="loading" type="submit">Create Category</button>
+      </div>
+      <div class="control">
+        <RouterLink to="/categories"><a class="button is-light">Back</a></RouterLink>
+      </div>
     </div>
   </form>
 </template>

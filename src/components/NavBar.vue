@@ -40,7 +40,7 @@
         <div class="navbar-item">
           <div class="buttons">
             <div v-if="auth.isLogged()">
-              <a @click="logout" class="button is-primary"> Logout </a>
+              <a @click="logout" class="button is-light"> Logout </a>
             </div>
             <div v-else>
               <RouterLink to="/signup" class="button is-primary"> Sign up </RouterLink>
