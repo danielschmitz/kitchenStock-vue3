@@ -1,10 +1,10 @@
 {
   "users": [
-    { 
-      "email": "sdsdsd@sadsdsd.com",
-      "password": "$2a$10$6wpYoUfFQKb8N4Ty2JLckeupkcnc/wnvDTlBwydwGmfsCiB1hL9By",
-      "name": "adsdsdsd",
-      "phone": "1212121212",
+     {
+      "email": "admin@admin.com",
+      "password": "$2a$10$M5BnnhfAetqcjs475.rlKOALrO//P6QI3IPjdddTQ8ZDHaXHPxZ4K",
+      "name": "admin",
+      "phone": "123123",
       "id": 1
     }
   ],

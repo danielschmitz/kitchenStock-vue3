@@ -6,7 +6,7 @@ This template should help get you started developing with Vue 3 in Vite.
 
 - clone
 - `npm install`
-- `npm run init` initialize .env and .db.json files
+- `npm run configure` configure .env and .db.json files
 - `npm run server` starts backend server at 3000 port
 - open another bash window
 - `npm run dev` starts vue
