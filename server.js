@@ -19,7 +19,7 @@ app.use('/api', auth)
 app.use('/api', router)
 
 //expose vue to web root
-app.use(jsonServer.static('dist'))
+app.use(app.static('dist'))
 
 // eslint-disable-next-line no-undef
 const port = process.env.PORT || 3000
