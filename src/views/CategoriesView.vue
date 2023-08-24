@@ -1,5 +1,14 @@
 <script setup lang="ts">
 import TitleBar from '@/components/TitleBar.vue'
+import type Category from '@/dto/Category'
+import CategoryService from '@/services/CategoryService'
+import { ref, onMounted } from 'vue'
+
+const categories = ref<Category[]>()
+
+onMounted(async () => {
+  categories.value = await CategoryService.getAll()
+})
 </script>
 
 <template>
@@ -13,7 +22,15 @@ import TitleBar from '@/components/TitleBar.vue'
         </span>
       </p>
     </div>
-    <a class="panel-block is-active">
+
+    <a v-for="category in categories" class="panel-block is-active" :key="category.id">
+      <span class="icon is-left">
+        <i class="fas fa-right-long" aria-hidden="true"></i>
+      </span>
+      {{ category.name }}
+    </a>
+
+    <!-- <a class="panel-block is-active">
       <span class="panel-icon">
         <i class="fas fa-book" aria-hidden="true"></i>
       </span>
@@ -48,9 +65,9 @@ import TitleBar from '@/components/TitleBar.vue'
         <i class="fas fa-code-branch" aria-hidden="true"></i>
       </span>
       mojs
-    </a>
+    </a> -->
   </nav>
   <div class="field is-grouped is-grouped-centered">
-      <button class="button is-primary">Create</button>
-    </div>
+    <button class="button is-primary">Create</button>
+  </div>
 </template>

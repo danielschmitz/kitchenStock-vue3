@@ -14,7 +14,7 @@ export const auth = reactive({
         localStorage.setItem(TOKEN_KEY, '')
     },
     getHeader() {
-        return `Authorization: Bearer ${this.token}`
+        return `Bearer ${this.token}`
     }
 })
 
