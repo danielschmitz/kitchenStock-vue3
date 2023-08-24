@@ -1,6 +1,9 @@
 {
   "name": "kitchen-stock",
   "version": "0.0.1",
+  "engines": {
+    "node": "16.13.2"
+  },
   "private": true,
   "scripts": {
     "dev": "vite",
