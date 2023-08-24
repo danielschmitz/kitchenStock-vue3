@@ -7,6 +7,8 @@ const router = jsonServer.router('db.json')
 
 app.db = router.db
 
+app.use(express.static('dist'))
+
 const rules = auth.rewriter({
   users: 600,
   categories: 640,
