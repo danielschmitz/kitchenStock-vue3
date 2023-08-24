@@ -4,10 +4,7 @@ const auth = require('json-server-auth')
 
 const app = jsonServer.create()
 const router = jsonServer.router('db.json')
-
 app.db = router.db
-
-app.use(express.static('dist'))
 
 const rules = auth.rewriter({
   users: 600,
@@ -16,10 +13,14 @@ const rules = auth.rewriter({
   products: 640
 })
 
-
+// expose json-server-auth
 app.use('/api', rules)
 app.use('/api', auth)
 app.use('/api', router)
+
+//expose vue to web root
+app.use(express.static('dist'))
+
 // eslint-disable-next-line no-undef
 const port = process.env.PORT || 3000
 app.listen(port)
