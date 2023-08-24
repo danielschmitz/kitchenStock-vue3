@@ -15,8 +15,8 @@ const rules = auth.rewriter({
 })
 
 
-app.use(rules)
-app.use(auth)
+app.use('/api', rules)
+app.use('/api', auth)
 app.use('/api', router)
 // eslint-disable-next-line no-undef
 const port = process.env.PORT || 3000
