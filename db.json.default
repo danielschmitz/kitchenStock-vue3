@@ -1,7 +1,7 @@
 {
   "users": [
      {
-      "email": "admin@admin",
+      "email": "admin@admin.com",
       "password": "$2a$10$M5BnnhfAetqcjs475.rlKOALrO//P6QI3IPjdddTQ8ZDHaXHPxZ4K",
       "name": "admin",
       "phone": "123123",
