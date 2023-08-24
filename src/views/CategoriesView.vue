@@ -16,26 +16,26 @@ onMounted(async () => {
 </script>
 
 <template>
-  <TitleBar title="Categorias" sub-title="Lista de categorias dos produtos"></TitleBar>
-  <Spinner v-if="loading"></Spinner>
-  <nav v-else class="panel is-shadowless border-with-title">
-    <div class="panel-block">
-      <p class="control has-icons-left">
-        <input class="input" type="text" placeholder="Search" />
+  <TitleBar title="Categorias" sub-title="Lista de categorias dos produtos">
+    <Spinner v-if="loading"></Spinner>
+    <nav v-else class="panel is-shadowless border-with-title">
+      <div class="panel-block">
+        <p class="control has-icons-left">
+          <input class="input" type="text" placeholder="Search" />
+          <span class="icon is-left">
+            <i class="fas fa-search" aria-hidden="true"></i>
+          </span>
+        </p>
+      </div>
+
+      <a v-for="category in categories" class="panel-block is-active" :key="category.id">
         <span class="icon is-left">
-          <i class="fas fa-search" aria-hidden="true"></i>
+          <i class="fas fa-right-long" aria-hidden="true"></i>
         </span>
-      </p>
-    </div>
+        {{ category.name }}
+      </a>
 
-    <a v-for="category in categories" class="panel-block is-active" :key="category.id">
-      <span class="icon is-left">
-        <i class="fas fa-right-long" aria-hidden="true"></i>
-      </span>
-      {{ category.name }}
-    </a>
-
-    <!-- <a class="panel-block is-active">
+      <!-- <a class="panel-block is-active">
       <span class="panel-icon">
         <i class="fas fa-book" aria-hidden="true"></i>
       </span>
@@ -71,8 +71,9 @@ onMounted(async () => {
       </span>
       mojs
     </a> -->
-  </nav>
-  <div class="field is-grouped is-grouped-centered">
-    <button class="button is-primary">Create</button>
-  </div>
+    </nav>
+    <div class="field is-grouped is-grouped-centered">
+      <button class="button is-primary">Create</button>
+    </div>
+  </TitleBar>
 </template>

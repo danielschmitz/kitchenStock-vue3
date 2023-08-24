@@ -12,4 +12,5 @@ defineProps<{
       <p class="subtitle">{{ subTitle }}</p>
     </div>
   </section>
+  <div class="container"><slot/></div>
 </template>
