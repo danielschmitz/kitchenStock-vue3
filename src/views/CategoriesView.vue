@@ -2,16 +2,25 @@
 import TitleBar from '@/components/TitleBar.vue'
 import type Category from '@/dto/Category'
 import Spinner from '@/components/Spinner.vue'
+import AlertDanger from '@/components/AlertDanger.vue'
 import CategoryService from '@/services/CategoryService'
 import { ref, onMounted } from 'vue'
+import type { AxiosError } from 'axios'
 
 const categories = ref<Category[]>()
 const loading = ref<Boolean>(false)
+const errorMessage = ref<string>('')
 
 onMounted(async () => {
   loading.value = true
-  categories.value = await CategoryService.getAll()
-  loading.value = false
+  errorMessage.value = ''
+  try {
+    categories.value = await CategoryService.getAll()
+  } catch (error: AxiosError | any) {
+    errorMessage.value = (error as AxiosError).response?.data as string
+  } finally {
+    loading.value = false
+  }
 })
 </script>
 
@@ -75,5 +84,6 @@ onMounted(async () => {
     <div class="field is-grouped is-grouped-centered">
       <button class="button is-primary">Create</button>
     </div>
+    <AlertDanger v-if="errorMessage">{{ errorMessage }}</AlertDanger>
   </TitleBar>
 </template>
