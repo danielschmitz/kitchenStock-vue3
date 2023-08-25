@@ -24,7 +24,7 @@ const router = createRouter({
         {
           path: '',
           name: 'list',
-          component: CategoriesList,
+          component: CategoriesList
         },
         {
           path: 'create',

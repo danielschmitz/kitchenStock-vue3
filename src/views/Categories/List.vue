@@ -23,7 +23,6 @@ onMounted(async () => {
   }
 })
 
-
 const onSearch = async (event: Event) => {
   errorMessage.value = ''
   try {
@@ -39,7 +38,13 @@ const onSearch = async (event: Event) => {
   <nav v-else class="panel is-shadowless border-with-title">
     <div class="panel-block">
       <p class="control has-icons-left">
-        <input v-model="search" class="input" type="text" placeholder="Search" @keydown.enter="onSearch" />
+        <input
+          v-model="search"
+          class="input"
+          type="text"
+          placeholder="Search"
+          @keydown.enter="onSearch"
+        />
         <span class="icon is-left">
           <i class="fas fa-search" aria-hidden="true"></i>
         </span>

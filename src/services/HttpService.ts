@@ -22,13 +22,13 @@ HttpService.interceptors.request.use(
 HttpService.interceptors.response.use(
   (response) => response,
   (error) => {
-    console.log(error);
+    console.log(error)
 
     if (axios.isAxiosError(error)) {
       const axiosError = error as AxiosError
       const httpStatus = axiosError.response?.status
       if (httpStatus == 401) {
-        router.push({path: '/login'})
+        router.push({ path: '/login' })
         return Promise.reject(error)
       }
     }

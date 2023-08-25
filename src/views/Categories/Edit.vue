@@ -38,7 +38,7 @@ const submitForm = async (event: Event) => {
   errorMessage.value = ''
   try {
     await CategoryService.edit(form.value)
-    router.push({path:'/categories'})
+    router.push({ path: '/categories' })
   } catch (error: AxiosError | any) {
     errorMessage.value = (error as AxiosError).response?.data as string
   } finally {
@@ -54,7 +54,7 @@ const onDelete = async (event: Event) => {
     try {
       const id = form.value.id || 0
       await CategoryService.delete(id)
-      router.push({path:'/categories'})
+      router.push({ path: '/categories' })
     } catch (error: AxiosError | any) {
       errorMessage.value = (error as AxiosError).response?.data as string
     } finally {

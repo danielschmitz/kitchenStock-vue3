@@ -18,6 +18,5 @@ nav a.router-link-active {
 }
 
 .navbar-item a:hover {
-  background-color: whitesmoke!important;
+  background-color: whitesmoke !important;
 }
-

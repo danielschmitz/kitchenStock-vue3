@@ -21,7 +21,9 @@
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
         <RouterLink class="navbar-item" to="/">Home</RouterLink>
-        <RouterLink class="navbar-item" to="/categories" v-if="auth.isLogged()">Categories</RouterLink>
+        <RouterLink class="navbar-item" to="/categories" v-if="auth.isLogged()"
+          >Categories</RouterLink
+        >
         <RouterLink class="navbar-item" to="/about" v-if="auth.isLogged()">Products</RouterLink>
 
         <!-- <div class="navbar-item has-dropdown is-hoverable">
@@ -56,12 +58,11 @@
 
 <script setup lang="ts">
 import { auth } from '@/auth'
-import router from '@/router';
+import router from '@/router'
 
 const logout = async (event: Event) => {
   event?.preventDefault()
   auth.logout()
-  router.push({path: '/'})
-} 
-
+  router.push({ path: '/' })
+}
 </script>

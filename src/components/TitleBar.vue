@@ -3,7 +3,6 @@ defineProps<{
   title?: string
   subTitle?: string
 }>()
-
 </script>
 <template>
   <section class="hero is-light">
@@ -12,5 +11,5 @@ defineProps<{
       <p class="subtitle">{{ subTitle }}</p>
     </div>
   </section>
-  <div class="container"><slot/></div>
+  <div class="container"><slot /></div>
 </template>

@@ -1,21 +1,21 @@
 import { reactive } from 'vue'
 export const TOKEN_KEY = 'token'
 export const auth = reactive({
-    token: '',
-    isLogged() {
-        return this.token !== ''
-    },
-    login( token:string ) {
-        this.token = token
-        localStorage.setItem(TOKEN_KEY, token)
-    },
-    logout() {
-        this.token = ''
-        localStorage.setItem(TOKEN_KEY, '')
-    },
-    getHeader() {
-        return `Bearer ${this.token}`
-    }
+  token: '',
+  isLogged() {
+    return this.token !== ''
+  },
+  login(token: string) {
+    this.token = token
+    localStorage.setItem(TOKEN_KEY, token)
+  },
+  logout() {
+    this.token = ''
+    localStorage.setItem(TOKEN_KEY, '')
+  },
+  getHeader() {
+    return `Bearer ${this.token}`
+  }
 })
 
 // export const auth = {

@@ -8,7 +8,7 @@
 .spinner {
   width: 100%;
   height: 4px;
-  margin:5px;
+  margin: 5px;
   background-color: #eee;
   animation: spin 1s linear infinite;
 }

@@ -30,9 +30,8 @@ const submitForm = async (event: Event) => {
 </script>
 
 <template>
-  <AlertDanger v-if="errorMessage">{{errorMessage}}</AlertDanger>
+  <AlertDanger v-if="errorMessage">{{ errorMessage }}</AlertDanger>
   <form @submit="submitForm">
-    
     <div class="columns m-3">
       <div class="column is-offset-3 is-6">
         <div class="field">
