@@ -1,6 +1,10 @@
-# vue-project
+# kitchenStock vue3
 
-This template should help get you started developing with Vue 3 in Vite.
+A simple kicthen stock app to trak your recipes
+
+For development purposes
+
+demo: https://kitchenstock.onrender.com
 
 ## Install
 
@@ -30,26 +34,4 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 
 See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
 
-```sh
-npm install
-```
-
-### Compile and Hot-Reload for Development
-
-```sh
-npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
