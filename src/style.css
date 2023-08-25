@@ -1,15 +1,23 @@
-@import "../node_modules/bulma/css/bulma.css";
+@import '../node_modules/bulma/css/bulma.css';
 
 /* 
 https://jenil.github.io/bulmaswatch/
 @import "https://unpkg.com/bulmaswatch/superhero/bulmaswatch.min.css"; 
 */
 
-
 .border-with-title {
-    border: 2px solid #eee;
-    border-radius: 0;
-    border-top: none;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
+  border: 2px solid #eee;
+  border-radius: 0;
+  border-top: none;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
+
+nav a.router-link-active {
+  background-color: whitesmoke;
+}
+
+.navbar-item a:hover {
+  background-color: whitesmoke!important;
+}
+
