@@ -8,6 +8,11 @@ import CategoriesList from './views/Categories/List.vue'
 import CategoriesCreate from './views/Categories/Create.vue'
 import CategoriesEdit from './views/Categories/Edit.vue'
 
+import ProductsIndex from './views/Products/Index.vue'
+import ProductsList from './views/Products/List.vue'
+import ProductsCreate from './views/Products/Create.vue'
+import ProductsEdit from './views/Products/Edit.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -35,6 +40,28 @@ const router = createRouter({
           path: 'edit/:id',
           name: 'edit',
           component: CategoriesEdit
+        }
+      ]
+    },
+    {
+      path: '/products',
+      name: 'products',
+      component: ProductsIndex,
+      children: [
+        {
+          path: '',
+          name: 'list',
+          component: ProductsList
+        },
+        {
+          path: 'create',
+          name: 'create',
+          component: ProductsCreate
+        },
+        {
+          path: 'edit/:id',
+          name: 'edit',
+          component: ProductsEdit
         }
       ]
     },

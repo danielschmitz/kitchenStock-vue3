@@ -24,7 +24,7 @@
         <RouterLink class="navbar-item" to="/categories" v-if="auth.isLogged()"
           >Categories</RouterLink
         >
-        <RouterLink class="navbar-item" to="/about" v-if="auth.isLogged()">Products</RouterLink>
+        <RouterLink class="navbar-item" to="/products" v-if="auth.isLogged()">Products</RouterLink>
 
         <!-- <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link"> More </a>
