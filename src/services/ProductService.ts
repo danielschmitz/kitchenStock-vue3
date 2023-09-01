@@ -10,8 +10,8 @@ const ProductService = {
   delete: async (id: number): Promise<Product> => (await HttpService.delete(`${URI}/${id}`)).data,
   create: async (product: Product): Promise<Product> =>
     (await HttpService.post('/products', product)).data,
-  edit: async (product: Product): Promise<Product> =>
-    (await HttpService.put('/products/' + product.id, product)).data
+  edit: async (product: Product, id: string): Promise<Product> =>
+    (await HttpService.put('/products/' + id, product)).data
 }
 
 export default ProductService

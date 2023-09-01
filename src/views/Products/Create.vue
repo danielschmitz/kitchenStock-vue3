@@ -20,7 +20,7 @@ const categories = ref<Category[]>()
 
 onMounted(async () => {
   categories.value = await CategoryService.getAll()
-  console.log(categories.value)
+  // console.log(categories.value)
 })
 
 const submitForm = async (event: Event) => {

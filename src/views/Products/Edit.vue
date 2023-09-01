@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import AlertDanger from '@/components/AlertDanger.vue'
 import Spinner from '@/components/Spinner.vue'
+import Category from '@/dto/Category'
 import type Product from '@/dto/Product'
 import router from '@/router'
+import CategoryService from '@/services/CategoryService'
 import ProductService from '@/services/ProductService'
 import type { AxiosError } from 'axios'
 import { onMounted, ref } from 'vue'
@@ -14,19 +16,18 @@ const form = ref<Product>({
   supplier: '',
   categoryId: 0
 })
-
+const categories = ref<Category[]>()
 const route = useRoute()
-
 const loading = ref<boolean>(false)
 const errorMessage = ref<string>('')
 
 onMounted(async () => {
   try {
     loading.value = true
+    categories.value = await CategoryService.getAll()
     const id = route.params.id.toString()
     const product = await ProductService.getById(id)
-    form.value.id = product.id
-    form.value.name = product.name
+    form.value = product
   } catch (error) {
     errorMessage.value = 'Product Not Found'
   } finally {
@@ -39,7 +40,7 @@ const submitForm = async (event: Event) => {
   loading.value = true
   errorMessage.value = ''
   try {
-    await ProductService.edit(form.value)
+    await ProductService.edit(form.value, route.params.id.toString())
     router.push({ path: '/products' })
   } catch (error: AxiosError | any) {
     errorMessage.value = (error as AxiosError).response?.data as string
@@ -73,7 +74,7 @@ const onDelete = async (event: Event) => {
     <div v-else>
       <form @submit="submitForm">
         <div class="columns m-3">
-          <div class="column is-offset-3 is-6">
+          <div class="column">
             <div class="field">
               <label class="label">Name</label>
               <div class="control">
@@ -89,6 +90,36 @@ const onDelete = async (event: Event) => {
               </div>
             </div>
           </div>
+          <div class="column">
+            <div class="field">
+              <label class="label">Marca</label>
+              <div class="control">
+                <input
+                  required
+                  class="input"
+                  v-model="form.supplier"
+                  type="text"
+                  id="supplier"
+                  name="supplier"
+                  placeholder="Marca"
+                />
+              </div>
+            </div>
+          </div>
+          <div class="column">
+        <div class="field">
+          <label class="label">Categoria</label>
+          <div class="control">
+            <div class="select is-fullwidth">
+              <select id="categoryId" name="categoryId" v-model="form.categoryId">
+                <option v-for="category in categories" :key="category.id" :value="category.id">
+                  {{ category.name }}
+                </option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
         </div>
 
         <div class="field is-grouped is-grouped-right pr-1">
