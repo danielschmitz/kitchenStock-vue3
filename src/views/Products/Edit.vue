@@ -12,7 +12,7 @@ const form = ref<Product>({
   id: 0,
   name: '',
   supplier: '',
-  productId: ''
+  categoryId: 0
 })
 
 const route = useRoute()
