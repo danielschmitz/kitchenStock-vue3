@@ -18,61 +18,50 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      name: 'home',
       component: HomeView
     },
     {
       path: '/categories',
-      name: 'categories',
       component: CategoriesIndex,
       children: [
         {
           path: '',
-          name: 'list',
           component: CategoriesList
         },
         {
           path: 'create',
-          name: 'create',
           component: CategoriesCreate
         },
         {
           path: 'edit/:id',
-          name: 'edit',
           component: CategoriesEdit
         }
       ]
     },
     {
       path: '/products',
-      name: 'products',
       component: ProductsIndex,
       children: [
         {
           path: '',
-          name: 'list',
           component: ProductsList
         },
         {
           path: 'create',
-          name: 'create',
           component: ProductsCreate
         },
         {
           path: 'edit/:id',
-          name: 'edit',
           component: ProductsEdit
         }
       ]
     },
     {
       path: '/signup',
-      name: 'signup',
       component: SignUp
     },
     {
       path: '/login',
-      name: 'login',
       component: LoginView
     }
   ]
