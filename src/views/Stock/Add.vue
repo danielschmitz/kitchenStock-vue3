@@ -28,7 +28,7 @@ const submitForm = async (event: Event) => {
   loading.value = true
   try {
     await StockService.create(formData.value)
-    router.push('/categories')
+    router.push('/')
   } catch (error) {
     errorMessage.value = (error as AxiosError).response?.data as string
   } finally {
