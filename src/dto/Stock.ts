@@ -1,3 +1,5 @@
+import type Product from "./Product"
+
 export default interface Stock {
   id?: number
   productId?: number
@@ -5,4 +7,5 @@ export default interface Stock {
   expires: Date
   added: Date
   price: number
+  product?: Product
 }

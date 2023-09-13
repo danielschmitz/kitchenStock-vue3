@@ -6,6 +6,12 @@ import router from './router'
 
 const app = createApp(App)
 
+app.config.globalProperties.$filters = {
+  formatDate(value:string) {
+    return new Date(value).toLocaleString().slice(0,10)
+  }
+}
+
 app.use(router)
 
 app.mount('#app')
