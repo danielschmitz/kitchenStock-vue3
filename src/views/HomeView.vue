@@ -22,12 +22,13 @@ onMounted(async () => {
         <AlertDanger>Você não está logado. Clique em login/signup</AlertDanger>
       </div>
       <div v-else>
-        <div class="field is-grouped is-grouped-centered gap-10">
+        <div class="field is-grouped is-grouped-centered">
           <RouterLink to="/stock/add"><a class="button is-primary mr-2">Add Item to Stock</a></RouterLink>
           <RouterLink to="/products/Create"><a class="button is-primary">Create a New Product</a></RouterLink>
         </div>
         <br />
-        <table class="table is-fullwidth is-bordered is-striped is-narrow is-hoverable ">
+        <div class="ml-5 mr-5">
+        <table class="table is-fullwidth is-bordered is-striped is-narrow is-hoverable">
           <tbody>
             <tr v-for="stock in stockList" :key="stock.id">
               <td class="quantity">{{ stock.quantity }}</td>
@@ -36,6 +37,7 @@ onMounted(async () => {
             </tr>
           </tbody>
         </table>
+      </div>
       </div>
     </div>
   </TitleBar>
