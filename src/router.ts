@@ -13,6 +13,10 @@ import ProductsList from './views/Products/List.vue'
 import ProductsCreate from './views/Products/Create.vue'
 import ProductsEdit from './views/Products/Edit.vue'
 
+import StockIndex from './views/Stock/Index.vue'
+import StockAdd from './views/Stock/Add.vue'
+
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -53,6 +57,16 @@ const router = createRouter({
         {
           path: 'edit/:id',
           component: ProductsEdit
+        }
+      ]
+    },
+    {
+      path: '/stock',
+      component: StockIndex,
+      children: [
+        {
+          path: 'add',
+          component: StockAdd
         }
       ]
     },

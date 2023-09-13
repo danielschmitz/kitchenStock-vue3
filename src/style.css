@@ -20,3 +20,14 @@ nav a.router-link-active {
 .navbar-item a:hover {
   background-color: whitesmoke !important;
 }
+
+
+.is-fab {
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+}
+.has-content-centered {
+  display: flex;
+  justify-content: center;
+}
