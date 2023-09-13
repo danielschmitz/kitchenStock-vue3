@@ -26,16 +26,19 @@
     {
       "id": 101,
       "name": "Beef",
+      "supplier": "Maranata",
       "categoryId": 1
     },
     {
       "id": 102,
       "name": "Tomatoes",
+      "supplier": "",
       "categoryId": 2
     },
     {
       "id": 103,
       "name": "Milk",
+      "supplier": "Porto Alegre",
       "categoryId": 3
     }
   ],
