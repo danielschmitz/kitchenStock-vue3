@@ -44,25 +44,25 @@
       "id": 1001,
       "productId": 101,
       "quantity": 50,
-      "expirationDate": "2023-08-31",
-      "unitPrice": 10.99,
-      "dateAdded": "2023-08-01"
+      "expires": "2023-08-31",
+      "price": 10.99,
+      "added": "2023-08-01"
     },
     {
       "id": 1002,
       "productId": 102,
       "quantity": 100,
-      "expirationDate": "2023-08-25",
-      "unitPrice": 2.49,
-      "dateAdded": "2023-08-02"
+      "expires": "2023-08-25",
+      "price": 2.49,
+      "added": "2023-08-02"
     },
     {
       "id": 1003,
       "productId": 103,
       "quantity": 20,
-      "expirationDate": "2023-09-10",
-      "unitPrice": 1.99,
-      "dateAdded": "2023-08-05"
+      "expires": "2023-09-10",
+      "price": 1.99,
+      "added": "2023-08-05"
     }
   ]
 }
