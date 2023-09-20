@@ -6,9 +6,16 @@ import { onMounted, ref } from 'vue'
 import type Stock from '@/dto/Stock'
 import StockService from '@/services/StockService'
 import Spinner from '@/components/Spinner.vue'
+import utils from '@/utils'
 
 const stockList = ref<Stock[]>()
 const loading = ref<boolean>(false)
+
+const checkDate = (date) => {
+  if (utils.isDateLessToday(date)) return 'red'
+  if (utils.isDateLessOneMonth(date)) return 'yellow'
+  return 'black'
+}
 
 onMounted(async () => {
   loading.value = true
@@ -39,8 +46,9 @@ onMounted(async () => {
             <tbody>
               <tr v-for="stock in stockList" :key="stock.id">
                 <td class="quantity">{{ stock.quantity }}</td>
-                <td>{{ stock.product?.name }} ({{ stock.product?.supplier }})</td>
-                <td style="width: 55px">{{ $filters.formatDate(stock.expires) }}</td>
+                <td>{{ stock.product?.name }} ({{ stock.product?.supplier }}) {{ utils.isDateLessOneMonth(stock.expires) ? 'yellow' : 'black'  }} </td>
+                <td style="width: 55px" 
+                    :class="checkDate(stock.expires)">{{ $filters.formatDate(stock.expires) }}</td>
               </tr>
             </tbody>
           </table>
@@ -59,4 +67,20 @@ onMounted(async () => {
 tr {
   cursor: pointer;
 }
+
+.red {
+  color: brown;
+  font-weight: bold;
+}
+
+.yellow {
+  color: darkgoldenrod;
+  font-weight: bold;
+}
+
+.black {
+  color: black;
+  font-weight: normal;
+}
+
 </style>

@@ -6,6 +6,8 @@ import StockService from '@/services/StockService'
 import utils from '@/utils'
 import router from '@/router'
 import AlertDanger from '@/components/AlertDanger.vue'
+import type Stock from '@/dto/Stock'
+import type { AxiosError } from 'axios'
 
 const formData = ref<Stock>({
   expires: utils.today,
