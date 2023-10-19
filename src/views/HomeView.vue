@@ -7,6 +7,8 @@ import type Stock from '@/dto/Stock'
 import StockService from '@/services/StockService'
 import Spinner from '@/components/Spinner.vue'
 import utils from '@/utils'
+import { useRoute } from 'vue-router'
+import router from '@/router'
 
 const stockList = ref<Stock[]>()
 const loading = ref<boolean>(false)
@@ -15,6 +17,10 @@ const checkDate = (date) => {
   if (utils.isDateLessToday(date)) return 'red'
   if (utils.isDateLessOneMonth(date)) return 'yellow'
   return 'black'
+}
+
+const changeStock = (id) => {
+  router.push({ path: `/stock/edit/${id}` })
 }
 
 onMounted(async () => {
@@ -44,7 +50,7 @@ onMounted(async () => {
         <div v-else class="ml-5 mr-5">
           <table class="table is-fullwidth is-bordered is-striped is-narrow is-hoverable">
             <tbody>
-              <tr v-for="stock in stockList" :key="stock.id">
+              <tr v-for="stock in stockList" :key="stock.id" @click="changeStock(stock.id)">
                 <td class="quantity">{{ stock.quantity }}</td>
                 <td>{{ stock.product?.name }} ({{ stock.product?.supplier }}) {{ utils.isDateLessOneMonth(stock.expires) ? 'yellow' : 'black'  }} </td>
                 <td style="width: 55px" 

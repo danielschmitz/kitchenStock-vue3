@@ -15,6 +15,7 @@ import ProductsEdit from './views/Products/Edit.vue'
 
 import StockIndex from './views/Stock/Index.vue'
 import StockAdd from './views/Stock/Add.vue'
+import StockEdit from './views/Stock/Edit.vue'
 
 
 const router = createRouter({
@@ -67,6 +68,10 @@ const router = createRouter({
         {
           path: 'add',
           component: StockAdd
+        },
+        {
+          path: 'edit/:id',
+          component: StockEdit
         }
       ]
     },
