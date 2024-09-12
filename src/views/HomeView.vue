@@ -40,6 +40,18 @@ const filterByCategory = (category: number | null) => {
   }
 }
 
+const getQuantityClass = (quantity: number) => {
+  if (quantity <= 5) return 'is-danger'
+  if (quantity <= 10) return 'is-warning'
+  return 'is-success'
+}
+
+const getExpirationClass = (date: string) => {
+  if (utils.isDateLessToday(date)) return 'is-danger'
+  if (utils.isDateLessOneMonth(date)) return 'is-warning'
+  return 'is-success'
+}
+
 onMounted(async () => {
   loading.value = true
   stockList.value = await StockService.getAll()
@@ -49,7 +61,7 @@ onMounted(async () => {
 })
 </script>
 <template>
-  <TitleBar title="Home" :withBorder="false">
+  <TitleBar title="Estoque" :withBorder="false">
     <div class="block pt-2">
       <div v-if="!auth.isLogged()">
         <AlertDanger>Você não está logado. Clique em login/signup</AlertDanger>
@@ -59,10 +71,10 @@ onMounted(async () => {
         <br />
         <Spinner v-if="loading"></Spinner>
 
-        <div v-else class="ml-5 mr-5">
-          <div class="buttons is-centered mb-4">
+        <div v-else class="stock-container">
+          <div class="filters mb-4">
             <button
-              class="button is-link"
+              class="button"
               :class="{ 'is-primary': selectedCategory === null }"
               @click="filterByCategory(null)"
             >
@@ -70,54 +82,182 @@ onMounted(async () => {
             </button>
             <button
               v-for="category in categories"
-              :key="category"
+              :key="category.id"
               class="button"
-              :class="{ 'is-primary': selectedCategory === category.name }"
+              :class="{ 'is-primary': selectedCategory === category.id }"
               @click="filterByCategory(category.id)"
             >
               {{ category.name }}
             </button>
           </div>
 
-          <table class="table is-fullwidth is-bordered is-striped is-narrow is-hoverable">
+          <!-- Tabela para telas maiores -->
+          <table class="table is-fullwidth is-hoverable stock-table is-hidden-mobile">
+            <thead>
+              <tr>
+                <th>Quantidade</th>
+                <th>Produto</th>
+                <th>Fornecedor</th>
+                <th>Validade</th>
+              </tr>
+            </thead>
             <tbody>
               <tr v-for="stock in filteredStockList" :key="stock.id" @click="changeStock(stock.id)">
-                <td class="quantity">{{ stock.quantity }}</td>
-                <td>{{ stock.product?.name }} ({{ stock.product?.supplier }})</td>
-                <td style="width: 55px" :class="checkDate(stock.expires)">
-                  {{ $filters.formatDate(stock.expires) }}
+                <td class="has-text-centered">
+                  <span class="tag is-medium" :class="getQuantityClass(stock.quantity)">
+                    {{ stock.quantity }}
+                  </span>
+                </td>
+                <td>{{ stock.product?.name }}</td>
+                <td>{{ stock.product?.supplier }}</td>
+                <td>
+                  <span class="tag" :class="getExpirationClass(stock.expires)">
+                    {{ $filters.formatDate(stock.expires) }}
+                  </span>
                 </td>
               </tr>
             </tbody>
           </table>
+
+          <!-- Cards para telas menores -->
+          <div class="stock-cards is-hidden-tablet">
+            <div
+              v-for="stock in filteredStockList"
+              :key="stock.id"
+              class="card mb-4"
+              @click="changeStock(stock.id)"
+            >
+              <div class="card-content">
+                <div class="content">
+                  <h4 class="title is-4">{{ stock.product?.name }}</h4>
+                  <p class="subtitle is-6">{{ stock.product?.supplier }}</p>
+                  <div class="tags" style="display: flex; justify-content: space-between">
+                    <div class="tag is-medium" :class="getQuantityClass(stock.quantity)">
+                      Quantidade: {{ stock.quantity }}
+                    </div>
+                    <div class="tag" :class="getExpirationClass(stock.expires)">
+                      Validade: {{ $filters.formatDate(stock.expires) }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </TitleBar>
 </template>
 
-<style>
-.quantity {
-  width: 35px;
-  text-align: right;
+<style scoped>
+.stock-container {
+  background-color: var(--background-color-secondary);
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-tr {
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.stock-table {
+  background-color: var(--background-color);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.stock-table th {
+  background-color: var(--background-color-tertiary);
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.stock-table td {
+  vertical-align: middle;
+  color: var(--text-color);
+}
+
+.stock-table tr:hover {
+  background-color: var(--background-color-hover);
   cursor: pointer;
 }
 
-.red {
-  color: brown !important;
-  font-weight: bold;
+/* Estilos para o modo claro */
+:root {
+  --background-color: #ffffff;
+  --background-color-secondary: #f5f5f5;
+  --background-color-tertiary: #e8e8e8;
+  --background-color-hover: #f0f0f0;
+  --text-color: #333333;
+  --border-color: #dbdbdb;
 }
 
-.yellow {
-  color: darkgoldenrod !important;
-  font-weight: bold;
+/* Estilos para o modo escuro */
+:root[data-theme='dark'] {
+  --background-color: #1a1a1a;
+  --background-color-secondary: #2c2c2c;
+  --background-color-tertiary: #3a3a3a;
+  --background-color-hover: #404040;
+  --text-color: #ffffff;
+  --border-color: #4a4a4a;
 }
 
-.black {
-  color: black;
-  font-weight: normal;
+/* Ajustes adicionais para o modo escuro */
+:root[data-theme='dark'] .stock-table {
+  border: 1px solid var(--border-color);
 }
+
+:root[data-theme='dark'] .button:not(.is-primary) {
+  background-color: var(--background-color-tertiary);
+  color: var(--text-color);
+  border-color: var(--border-color);
+}
+
+:root[data-theme='dark'] .button:not(.is-primary):hover {
+  background-color: var(--background-color-hover);
+}
+
+:root[data-theme='dark'] .tag:not(.is-danger):not(.is-warning):not(.is-success) {
+  background-color: var(--background-color-tertiary);
+  color: var(--text-color);
+}
+
+.stock-cards .card {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease;
+}
+
+.stock-cards .card:hover {
+  background-color: var(--background-color-hover);
+  cursor: pointer;
+}
+
+.stock-cards .card-content {
+  padding: 1rem;
+}
+
+.stock-cards .tags {
+  margin-top: 0.5rem;
+}
+
+/* Estilos para o modo claro */
+:root {
+  /* ... variáveis existentes ... */
+}
+
+/* Estilos para o modo escuro */
+:root[data-theme='dark'] {
+  /* ... variáveis existentes ... */
+}
+
+/* Ajustes adicionais para o modo escuro */
+:root[data-theme='dark'] .stock-cards .card {
+  border: 1px solid var(--border-color);
+}
+
+/* ... outros estilos existentes ... */
 </style>
