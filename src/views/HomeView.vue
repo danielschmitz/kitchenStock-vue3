@@ -33,7 +33,8 @@ const filterByCategory = (category: number | null) => {
   console.log(category)
   selectedCategory.value = category
   if (category) {
-    filteredStockList.value = stockList.value?.filter(stock => stock.product?.categoryId === category) || []
+    filteredStockList.value =
+      stockList.value?.filter((stock) => stock.product?.categoryId === category) || []
   } else {
     filteredStockList.value = stockList.value || []
   }
@@ -47,9 +48,8 @@ onMounted(async () => {
   loading.value = false
 })
 </script>
-
 <template>
-  <TitleBar title="Home">
+  <TitleBar title="Home" :withBorder="false">
     <div class="block pt-2">
       <div v-if="!auth.isLogged()">
         <AlertDanger>Você não está logado. Clique em login/signup</AlertDanger>
@@ -61,14 +61,20 @@ onMounted(async () => {
 
         <div v-else class="ml-5 mr-5">
           <div class="buttons is-centered mb-4">
-            <button class="button is-link" :class="{ 'is-primary': selectedCategory === null }" @click="filterByCategory(null)">
+            <button
+              class="button is-link"
+              :class="{ 'is-primary': selectedCategory === null }"
+              @click="filterByCategory(null)"
+            >
               Todos
             </button>
-            <button v-for="category in categories" 
-                    :key="category" 
-                    class="button" 
-                    :class="{ 'is-primary': selectedCategory === category.name }"
-                    @click="filterByCategory(category.id)">
+            <button
+              v-for="category in categories"
+              :key="category"
+              class="button"
+              :class="{ 'is-primary': selectedCategory === category.name }"
+              @click="filterByCategory(category.id)"
+            >
               {{ category.name }}
             </button>
           </div>
@@ -77,9 +83,10 @@ onMounted(async () => {
             <tbody>
               <tr v-for="stock in filteredStockList" :key="stock.id" @click="changeStock(stock.id)">
                 <td class="quantity">{{ stock.quantity }}</td>
-                <td>{{ stock.product?.name }} ({{ stock.product?.supplier }}) </td>
-                <td style="width: 55px" 
-                    :class="checkDate(stock.expires)">{{ $filters.formatDate(stock.expires) }}</td>
+                <td>{{ stock.product?.name }} ({{ stock.product?.supplier }})</td>
+                <td style="width: 55px" :class="checkDate(stock.expires)">
+                  {{ $filters.formatDate(stock.expires) }}
+                </td>
               </tr>
             </tbody>
           </table>
@@ -100,12 +107,12 @@ tr {
 }
 
 .red {
-  color: brown!important;
+  color: brown !important;
   font-weight: bold;
 }
 
 .yellow {
-  color: darkgoldenrod!important;
+  color: darkgoldenrod !important;
   font-weight: bold;
 }
 
@@ -113,5 +120,4 @@ tr {
   color: black;
   font-weight: normal;
 }
-
 </style>
