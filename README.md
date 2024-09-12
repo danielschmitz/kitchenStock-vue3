@@ -2,6 +2,9 @@
 
 A simple kicthen stock app to trak your recipes
 
+![image](https://github.com/user-attachments/assets/153955c8-a801-4da4-9a1b-3ea972078806)
+
+
 For development purposes
 
 demo: https://kitchenstock.onrender.com
