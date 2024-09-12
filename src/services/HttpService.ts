@@ -24,14 +24,14 @@ HttpService.interceptors.response.use(
   (error) => {
     console.log(error)
 
-    if (axios.isAxiosError(error)) {
-      const axiosError = error as AxiosError
-      const httpStatus = axiosError.response?.status
-      if (httpStatus == 401) {
-        router.push({ path: '/login' })
-        return Promise.reject(error)
-      }
-    }
+    // if (axios.isAxiosError(error)) {
+    //   const axiosError = error as AxiosError
+    //   const httpStatus = axiosError.response?.status
+    //   if (httpStatus == 401) {
+    //     router.push({ path: '/login' })
+    //     return Promise.reject(error)
+    //   }
+    // }
 
     return Promise.reject(error)
   }

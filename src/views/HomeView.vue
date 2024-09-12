@@ -12,12 +12,16 @@ import { useRoute } from 'vue-router'
 import router from '@/router'
 import type Category from '@/dto/Category'
 import CategoryService from '@/services/CategoryService'
+import { auth as firebaseAuth, provider } from '@/firebaseConfig'
+import { signInWithPopup, signOut } from 'firebase/auth'
+import { onAuthStateChanged } from 'firebase/auth'
 
 const stockList = ref<Stock[]>()
 const categories = ref<Category[]>()
 const filteredStockList = ref<Stock[]>()
 const loading = ref<boolean>(false)
 const selectedCategory = ref<number | null>(null)
+const user = ref(null)
 
 const checkDate = (date) => {
   if (utils.isDateLessToday(date)) return 'red'
@@ -52,6 +56,24 @@ const getExpirationClass = (date: string) => {
   return 'is-success'
 }
 
+const loginWithGoogle = async () => {
+  try {
+    const result = await signInWithPopup(firebaseAuth, provider)
+    user.value = result.user
+  } catch (error) {
+    console.error('Erro ao fazer login:', error)
+  }
+}
+
+const logout = async () => {
+  try {
+    await signOut(firebaseAuth)
+    user.value = null
+  } catch (error) {
+    console.error('Erro ao fazer logout:', error)
+  }
+}
+
 onMounted(async () => {
   loading.value = true
   stockList.value = await StockService.getAll()
@@ -59,14 +81,22 @@ onMounted(async () => {
   filteredStockList.value = stockList.value || []
   loading.value = false
 })
+
+onMounted(() => {
+  onAuthStateChanged(auth, (currentUser) => {
+    user.value = currentUser
+    console.log(user.value)
+  })
+})
 </script>
 <template>
   <TitleBar title="Estoque" :withBorder="false">
     <div class="block pt-2">
-      <div v-if="!auth.isLogged()">
-        <AlertDanger>Você não está logado. Clique em login/signup</AlertDanger>
+      <div v-if="!user">
+        <button @click="loginWithGoogle">Login com Google</button>
       </div>
       <div v-else>
+        <button @click="logout">Logout</button>
         <ActionButtons />
         <br />
         <Spinner v-if="loading"></Spinner>

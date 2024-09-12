@@ -20,7 +20,7 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <RouterLink class="navbar-item"  to="/">Home</RouterLink>
+        <RouterLink class="navbar-item" to="/">Home</RouterLink>
         <RouterLink class="navbar-item" to="/categories" v-if="auth.isLogged()"
           >Categories</RouterLink
         >
@@ -41,13 +41,13 @@
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <div v-if="auth.isLogged()">
+            <!-- <div v-if="auth.isLogged()">
               <a @click="logout" class="button is-light"> Logout </a>
             </div>
             <div v-else>
               <RouterLink to="/signup" class="button is-primary"> Sign up </RouterLink>
               <RouterLink to="/login" class="button is-light"> Login </RouterLink>
-            </div>
+            </div> -->
             <!-- Adicione o switcher de modo escuro aqui -->
             <button @click="toggleDarkMode" class="button">
               {{ isDarkMode ? '🌙' : '☀️' }}
@@ -99,13 +99,10 @@ onMounted(() => {
 })
 
 watch(isDarkMode, updateDarkMode)
-
 </script>
 
 <style>
-
 nav a.router-link-active {
-    background-color: transparent!important;
+  background-color: transparent !important;
 }
-
 </style>
