@@ -48,6 +48,10 @@
               <RouterLink to="/signup" class="button is-primary"> Sign up </RouterLink>
               <RouterLink to="/login" class="button is-light"> Login </RouterLink>
             </div>
+            <!-- Adicione o switcher de modo escuro aqui -->
+            <button @click="toggleDarkMode" class="button">
+              {{ isDarkMode ? '🌙' : '☀️' }}
+            </button>
           </div>
         </div>
       </div>
@@ -57,6 +61,7 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted, watch } from 'vue'
 import { auth } from '@/auth'
 import router from '@/router'
 
@@ -65,4 +70,53 @@ const logout = async (event: Event) => {
   auth.logout()
   router.push({ path: '/' })
 }
+
+const isDarkMode = ref(false)
+
+const toggleDarkMode = () => {
+  isDarkMode.value = !isDarkMode.value
+  updateDarkMode()
+}
+
+const updateDarkMode = () => {
+  const htmlElement = document.querySelector('html')
+  if (htmlElement) {
+    if (isDarkMode.value) {
+      htmlElement.setAttribute('data-theme', 'dark')
+    } else {
+      htmlElement.setAttribute('data-theme', 'light')
+    }
+  }
+  localStorage.setItem('darkMode', isDarkMode.value.toString())
+}
+
+onMounted(() => {
+  const savedDarkMode = localStorage.getItem('darkMode')
+  if (savedDarkMode !== null) {
+    isDarkMode.value = savedDarkMode === 'true'
+    updateDarkMode()
+  }
+})
+
+watch(isDarkMode, updateDarkMode)
 </script>
+
+<style>
+/* Estilos para o modo claro (padrão) */
+html {
+  --background-color: #ffffff;
+  --text-color: #000000;
+}
+
+/* Estilos para o modo escuro */
+html[data-theme="dark"] {
+  --background-color: #1a1a1a;
+  --text-color: #ffffff;
+}
+
+/* Aplique as variáveis CSS aos elementos */
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+}
+</style>
