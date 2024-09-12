@@ -12,9 +12,17 @@ import { useRoute } from 'vue-router'
 import router from '@/router'
 import type Category from '@/dto/Category'
 import CategoryService from '@/services/CategoryService'
-import { auth as firebaseAuth, provider } from '@/firebaseConfig'
-import { signInWithPopup, signOut } from 'firebase/auth'
-import { onAuthStateChanged } from 'firebase/auth'
+
+import {
+  getAdditionalUserInfo,
+  getAuth,
+  GoogleAuthProvider,
+  signInWithPopup,
+  signOut,
+  onAuthStateChanged
+} from 'firebase/auth'
+
+import { provider } from '@/firebaseConfig'
 
 const stockList = ref<Stock[]>()
 const categories = ref<Category[]>()
@@ -57,12 +65,28 @@ const getExpirationClass = (date: string) => {
 }
 
 const loginWithGoogle = async () => {
-  try {
-    const result = await signInWithPopup(firebaseAuth, provider)
-    user.value = result.user
-  } catch (error) {
-    console.error('Erro ao fazer login:', error)
-  }
+  const auth = getAuth()
+  signInWithPopup(auth, provider)
+    .then((result) => {
+      // This gives you a Google Access Token. You can use it to access the Google API.
+      const credential = GoogleAuthProvider.credentialFromResult(result)
+      const token = credential.accessToken
+      // The signed-in user info.
+      user.value = result.user
+      console.log('signInWithPopup', user, getAdditionalUserInfo(result))
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      const errorCode = error.code
+      const errorMessage = error.message
+      // The email of the user's account used.
+      const email = error.customData.email
+      // The AuthCredential type that was used.
+      const credential = GoogleAuthProvider.credentialFromError(error)
+      // ...
+    })
 }
 
 const logout = async () => {
@@ -83,9 +107,9 @@ onMounted(async () => {
 })
 
 onMounted(() => {
-  onAuthStateChanged(auth, (currentUser) => {
+  onAuthStateChanged(getAuth(), (currentUser) => {
+    console.log('onAuthStateChanged', currentUser)
     user.value = currentUser
-    console.log(user.value)
   })
 })
 </script>
@@ -96,7 +120,7 @@ onMounted(() => {
         <button @click="loginWithGoogle">Login com Google</button>
       </div>
       <div v-else>
-        <button @click="logout">Logout</button>
+        <button @click="logout">Logout ({{ user.email }})</button>
         <ActionButtons />
         <br />
         <Spinner v-if="loading"></Spinner>
