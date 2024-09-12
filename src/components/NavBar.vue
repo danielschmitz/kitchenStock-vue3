@@ -20,7 +20,7 @@
 
     <div id="navbarBasicExample" class="navbar-menu">
       <div class="navbar-start">
-        <RouterLink class="navbar-item" to="/">Home</RouterLink>
+        <RouterLink class="navbar-item"  to="/">Home</RouterLink>
         <RouterLink class="navbar-item" to="/categories" v-if="auth.isLogged()"
           >Categories</RouterLink
         >
@@ -99,24 +99,13 @@ onMounted(() => {
 })
 
 watch(isDarkMode, updateDarkMode)
+
 </script>
 
 <style>
-/* Estilos para o modo claro (padrão) */
-html {
-  --background-color: #ffffff;
-  --text-color: #000000;
+
+nav a.router-link-active {
+    background-color: transparent!important;
 }
 
-/* Estilos para o modo escuro */
-html[data-theme="dark"] {
-  --background-color: #1a1a1a;
-  --text-color: #ffffff;
-}
-
-/* Aplique as variáveis CSS aos elementos */
-body {
-  background-color: var(--background-color);
-  color: var(--text-color);
-}
 </style>
