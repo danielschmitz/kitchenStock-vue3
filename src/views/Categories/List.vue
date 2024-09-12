@@ -35,8 +35,8 @@ const onSearch = async (event: Event) => {
 
 <template>
   <Spinner v-if="loading"></Spinner>
-  <nav v-else class="panel is-shadowless border-with-title">
-    <div class="panel-block">
+  <div v-else>
+    <div>
       <p class="control has-icons-left">
         <input
           v-model="search"
@@ -62,7 +62,7 @@ const onSearch = async (event: Event) => {
       </span>
       {{ category.name }}
     </RouterLink>
-  </nav>
+  </div>
   <div class="field is-grouped is-grouped-centered">
     <RouterLink to="/categories/create"><a class="button is-primary">New Category</a></RouterLink>
   </div>

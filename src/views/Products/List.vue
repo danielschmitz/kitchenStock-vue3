@@ -35,21 +35,19 @@ const onSearch = async (event: Event) => {
 
 <template>
   <Spinner v-if="loading"></Spinner>
-  <nav v-else class="panel is-shadowless border-with-title">
-    <div class="panel-block">
-      <p class="control has-icons-left">
-        <input
-          v-model="search"
-          class="input"
-          type="text"
-          placeholder="Search"
-          @keydown.enter="onSearch"
-        />
-        <span class="icon is-left">
-          <i class="fas fa-search" aria-hidden="true"></i>
-        </span>
-      </p>
-    </div>
+  <div v-else class="">
+    <p class="control has-icons-left">
+      <input
+        v-model="search"
+        class="input"
+        type="text"
+        placeholder="Search"
+        @keydown.enter="onSearch"
+      />
+      <span class="icon is-left">
+        <i class="fas fa-search" aria-hidden="true"></i>
+      </span>
+    </p>
 
     <RouterLink
       :to="`/products/edit/${product.id}`"
@@ -62,7 +60,7 @@ const onSearch = async (event: Event) => {
       </span>
       {{ product.name }}
     </RouterLink>
-  </nav>
+  </div>
   <div class="field is-grouped is-grouped-centered">
     <RouterLink to="/products/create"><a class="button is-primary">New Product</a></RouterLink>
   </div>

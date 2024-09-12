@@ -5,6 +5,12 @@ import { RouterView } from 'vue-router'
 
 <template>
   <TitleBar title="Products">
-    <RouterView />
+    <div class="panel is-shadowless border-with-title">
+      <div class="panel-block">
+        <div class="control">
+          <RouterView />
+        </div>
+      </div>
+    </div>
   </TitleBar>
 </template>
