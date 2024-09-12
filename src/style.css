@@ -6,7 +6,7 @@ https://jenil.github.io/bulmaswatch/
 */
 
 .border-with-title {
-  border: 2px solid #eee;
+  border: 2px solid rgba(128, 128, 128, 0.1);
   border-radius: 0;
   border-top: none;
   border-bottom-left-radius: 5px;
@@ -20,7 +20,6 @@ nav a.router-link-active {
 .navbar-item a:hover {
   background-color: whitesmoke !important;
 }
-
 
 .is-fab {
   width: 100%;
